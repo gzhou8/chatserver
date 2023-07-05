@@ -6,11 +6,11 @@ using namespace std;
 
 
 
-// 数据库配置信息
-static string server = "127.0.0.1";
-static string user = "root";
-static string password = "gzhou8";
-static string dbname = "chat";
+// // 数据库配置信息
+// static string server = "127.0.0.1";
+// static string user = "root";
+// static string password = "gzhou8";
+// static string dbname = "chat";
 
 
 
@@ -26,20 +26,21 @@ MySQL::~MySQL()
     mysql_close(_conn);
 }
 // 连接数据库
-bool MySQL::connect()
+bool MySQL::connect(string ip, unsigned short port, string user, string password, string dbname)
 {
-    MYSQL *p = mysql_real_connect(_conn, server.c_str(), user.c_str(),
-    password.c_str(), dbname.c_str(), 3306, nullptr, 0);
-    if (p != nullptr)
-    {
-        mysql_query(_conn, "set names gbk");
-        LOG_INFO << "connect mysql success";
-    }
-    else
-    {
-        LOG_INFO << "connect mysql failed";
-    }
-    return p;
+    MYSQL *p = mysql_real_connect(_conn, ip.c_str(), user.c_str(),
+    password.c_str(), dbname.c_str(), port, nullptr, 0);
+    return p != nullptr;
+    // if (p != nullptr)
+    // {
+    //     mysql_query(_conn, "set names gbk");
+    //     LOG_INFO << "connect mysql success";
+    // }
+    // else
+    // {
+    //     LOG_INFO << "connect mysql failed";
+    // }
+    // return p;
 }
 // 更新操作
 bool MySQL::update(string sql)
