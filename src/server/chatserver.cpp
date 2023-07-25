@@ -8,6 +8,8 @@ using namespace std;
 using namespace placeholders;
 using json = nlohmann::json;
 
+
+//初始化网络服务，设置连接和消息回调函数
 ChatServer::ChatServer(EventLoop* loop,
             const InetAddress& listenAddr,
             const string& nameArg)

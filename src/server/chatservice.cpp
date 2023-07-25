@@ -5,6 +5,7 @@
 using namespace std;
 using namespace muduo;
 
+//单例模式
 ChatService *ChatService::instance()
 {
     static ChatService service;
